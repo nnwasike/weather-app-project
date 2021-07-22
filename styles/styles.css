@@ -28,10 +28,19 @@ button {
 
 button:hover {
   background: black;
-
   color: white;
 }
 
+footer {
+  text-align: left;
+  font-size: smaller;
+  margin: 5px auto;
+  max-width: 600px;
+}
+
+#code-link {
+  text-decoration-line: none;
+}
 #temp {
   font-size: 55px;
   padding: 0;
@@ -45,10 +54,11 @@ button:hover {
     rgb(234, 251, 251) 77.6%,
     rgb(240, 251, 244) 100.7%
   );
-  border: solid thin black;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border: solid thin gray;
   border-radius: 8px;
   margin-top: 30px;
-  max-width: 700px;
+  max-width: 600px;
   padding: 25px;
 }
 
@@ -99,4 +109,14 @@ button:hover {
 #central-icon {
   font-size: 50px;
   margin-left: 15px;
+}
+
+#upcoming-forecast-message {
+  text-align: right;
+  margin-top: 10px;
+  font-size: smaller;
+}
+
+.upcoming-forecast {
+  text-align: right;
 }
