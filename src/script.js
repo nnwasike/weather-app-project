@@ -78,6 +78,14 @@ function showTemperature(response) {
 
   let lowTempData = response.data.main.temp_min;
   document.querySelector("#temp-low").innerHTML = Math.round(lowTempData);
+
+  //console.log(response.data.main);
+  let humidityData = response.data.main.humidity;
+  document.querySelector("#humidity").innerHTML = humidityData;
+
+  //console.log(response.data.wind);
+  let windData = response.data.wind.speed;
+  document.querySelector("#wind").innerHTML = Math.round(windData);
 }
 function searchCity(city) {
   let units = "metric";

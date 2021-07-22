@@ -3,12 +3,37 @@ h1,
 .search-bar,
 .heading-info,
 #forecast,
+#temp-high,
+#temp-low,
+.weather-conditions,
 .week {
   font-family: "Montserrat", sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
+button {
+  background: white;
+  border: thin black;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  display: block;
+  font-size: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  transition: all 500ms ease-in-out;
+}
+
+button:hover {
+  background: black;
+
+  color: white;
+}
+
 #temp {
-  font-size: 50px;
+  font-size: 55px;
   padding: 0;
 }
 .app-background {
@@ -33,20 +58,22 @@ h1,
 }
 
 .heading-info {
-  list-style: none;
   padding-left: 0;
   font-weight: 500;
   font-size: 1.25rem;
 }
 
+#forecast {
+  font-weight: bold;
+  font-size: larger;
+}
+.weather-conditions {
+  padding-left: 0;
+}
 .week {
   text-align: center;
-}
-
-.week {
   font-weight: bold;
 }
-
 .icons {
   font-size: 25px;
 }
@@ -71,21 +98,5 @@ h1,
 
 #central-icon {
   font-size: 50px;
-}
-button {
-  background: white;
-  border: thin black;
-  border-radius: 15px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  display: block;
-  font-size: 10px;
-  margin: 0 auto;
-  padding: 10px;
-  transition: all 500ms ease-in-out;
-}
-
-button:hover {
-  background: black;
-
-  color: white;
+  margin-left: 15px;
 }
