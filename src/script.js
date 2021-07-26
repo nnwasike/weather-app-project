@@ -44,33 +44,34 @@ executeDate();
 
 function changeToFahrenheit(event) {
   event.preventDefault();
-  let fahrenheitTemp = document.querySelector("#temp");
-  let temperature = fahrenheitTemp.innerHTML;
-  temperature = Number(temperature);
-  fahrenheitTemp.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  let temperatureElement = document.querySelector("#temp");
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
 function changeToCelsius(event) {
   event.preventDefault();
-  let celsiusTemp = document.querySelector("#temp");
-  let temperature = celsiusTemp.innerHTML;
-  temperature = Number(temperature);
-  celsiusTemp.innerHTML = Math.round((temperature - 32) * (5 / 9));
+  let temperatureElement = document.querySelector("#temp");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
-//function formatDate(timestamp) {
-//console.log(response.data.dt);
-//}
+let celsiusTemperature = null;
 
 function showTemperature(response) {
   console.log(response.data);
   document.querySelector("h1").innerHTML = response.data.name;
 
-  let tempData = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+
+  let tempData = Math.round(celsiusTemperature);
   document.querySelector("#temp").innerHTML = tempData;
 
   //console.log(response.data.weather);

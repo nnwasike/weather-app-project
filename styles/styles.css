@@ -100,6 +100,7 @@ footer {
 #celsius,
 .separation-bar,
 #fahrenheit {
+  cursor: default;
   font-size: 15px;
   position: relative;
   top: -26px;
@@ -120,4 +121,8 @@ footer {
 
 .upcoming-forecast {
   text-align: right;
+}
+
+.active {
+  color: black;
 }
