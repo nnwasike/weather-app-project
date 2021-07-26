@@ -91,6 +91,13 @@ function showTemperature(response) {
   let windData = response.data.wind.speed;
   document.querySelector("#wind").innerHTML = Math.round(windData);
 
+  let centralIcon = document.querySelector("#central-icon");
+  centralIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  centralIcon.setAttribute("alt", response.data.weather[0].description);
+
   //let dateElement = document.querySelector("date");
   //dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
