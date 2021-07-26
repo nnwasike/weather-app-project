@@ -62,15 +62,19 @@ function changeToCelsius(event) {
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
+//function formatDate(timestamp) {
+//console.log(response.data.dt);
+//}
+
 function showTemperature(response) {
-  //console.log(response.data);
+  console.log(response.data);
   document.querySelector("h1").innerHTML = response.data.name;
 
   let tempData = Math.round(response.data.main.temp);
   document.querySelector("#temp").innerHTML = tempData;
 
   //console.log(response.data.weather);
-  let tempDescription = response.data.weather[0].main;
+  let tempDescription = response.data.weather[0].description;
   document.querySelector("#forecast").innerHTML = tempDescription;
 
   let highTempData = response.data.main.temp_max;
@@ -86,6 +90,9 @@ function showTemperature(response) {
   //console.log(response.data.wind);
   let windData = response.data.wind.speed;
   document.querySelector("#wind").innerHTML = Math.round(windData);
+
+  //let dateElement = document.querySelector("date");
+  //dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 function searchCity(city) {
   let units = "metric";
@@ -118,7 +125,7 @@ function showGeoLocationTemp(response) {
   document.querySelector("#temp").innerHTML = geoTempData;
 
   //console.log(response.data.weather);
-  let geoTempDescription = response.data.weather[0].main;
+  let geoTempDescription = response.data.weather[0].description;
   document.querySelector("#forecast").innerHTML = geoTempDescription;
 
   let geoHighTempData = response.data.main.temp_max;

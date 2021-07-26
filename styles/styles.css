@@ -76,6 +76,7 @@ footer {
 #forecast {
   font-weight: bold;
   font-size: larger;
+  text-transform: capitalize;
 }
 .weather-conditions {
   padding-left: 0;
