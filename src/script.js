@@ -49,6 +49,16 @@ function changeToFahrenheit(event) {
   temperatureElement.innerHTML = Math.round(fahrenheitTemp);
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
+
+  let highElement = document.querySelector("#temp-high");
+  let highTemp = highElement.innerHTML;
+  highTemp = Number(highTemp);
+  highElement.innerHTML = Math.round((highTemp * 9) / 5 + 32);
+
+  let lowElement = document.querySelector("#temp-low");
+  let lowTemp = lowElement.innerHTML;
+  lowTemp = Number(lowTemp);
+  lowElement.innerHTML = Math.round((lowTemp * 9) / 5 + 32);
 }
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", changeToFahrenheit);
@@ -59,6 +69,16 @@ function changeToCelsius(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
+
+  let highElement = document.querySelector("#temp-high");
+  let highTemp = highElement.innerHTML;
+  highTemp = Number(highTemp);
+  highElement.innerHTML = Math.round((highTemp - 32) * (5 / 9));
+
+  let lowElement = document.querySelector("#temp-low");
+  let lowTemp = lowElement.innerHTML;
+  lowTemp = Number(lowTemp);
+  lowElement.innerHTML = Math.round((lowTemp - 32) * (5 / 9));
 }
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
@@ -98,9 +118,6 @@ function showTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   centralIcon.setAttribute("alt", response.data.weather[0].description);
-
-  //let dateElement = document.querySelector("date");
-  //dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 function searchCity(city) {
   let units = "metric";
