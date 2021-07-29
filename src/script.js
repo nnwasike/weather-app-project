@@ -45,20 +45,15 @@ executeDate();
 function changeToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  temperatureElement.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 
   let highElement = document.querySelector("#temp-high");
-  let highTemp = highElement.innerHTML;
-  highTemp = Number(highTemp);
-  highElement.innerHTML = Math.round((highTemp * 9) / 5 + 32);
+  highElement.innerHTML = Math.round((celsiusHighTemp * 9) / 5 + 32);
 
   let lowElement = document.querySelector("#temp-low");
-  let lowTemp = lowElement.innerHTML;
-  lowTemp = Number(lowTemp);
-  lowElement.innerHTML = Math.round((lowTemp * 9) / 5 + 32);
+  lowElement.innerHTML = Math.round((celsiusLowTemp * 9) / 5 + 32);
 }
 let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", changeToFahrenheit);
@@ -71,38 +66,34 @@ function changeToCelsius(event) {
   fahrenheitLink.classList.remove("active");
 
   let highElement = document.querySelector("#temp-high");
-  let highTemp = highElement.innerHTML;
-  highTemp = Number(highTemp);
-  highElement.innerHTML = Math.round((highTemp - 32) * (5 / 9));
+  highElement.innerHTML = Math.round(celsiusHighTemp);
 
   let lowElement = document.querySelector("#temp-low");
-  let lowTemp = lowElement.innerHTML;
-  lowTemp = Number(lowTemp);
-  lowElement.innerHTML = Math.round((lowTemp - 32) * (5 / 9));
+  lowElement.innerHTML = Math.round(celsiusLowTemp);
 }
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
 let celsiusTemperature = null;
+let celsiusHighTemp = null;
+let celsiusLowTemp = null;
 
 function showTemperature(response) {
   console.log(response.data);
   document.querySelector("h1").innerHTML = response.data.name;
 
   celsiusTemperature = response.data.main.temp;
-
-  let tempData = Math.round(celsiusTemperature);
-  document.querySelector("#temp").innerHTML = tempData;
+  document.querySelector("#temp").innerHTML = Math.round(celsiusTemperature);
 
   //console.log(response.data.weather);
   let tempDescription = response.data.weather[0].description;
   document.querySelector("#forecast").innerHTML = tempDescription;
 
-  let highTempData = response.data.main.temp_max;
-  document.querySelector("#temp-high").innerHTML = Math.round(highTempData);
+  celsiusHighTemp = response.data.main.temp_max;
+  document.querySelector("#temp-high").innerHTML = Math.round(celsiusHighTemp);
 
-  let lowTempData = response.data.main.temp_min;
-  document.querySelector("#temp-low").innerHTML = Math.round(lowTempData);
+  celsiusLowTemp = response.data.main.temp_min;
+  document.querySelector("#temp-low").innerHTML = Math.round(celsiusLowTemp);
 
   //console.log(response.data.main);
   let humidityData = response.data.main.humidity;
