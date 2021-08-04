@@ -89,26 +89,24 @@ function displayForecast(response) {
   console.log(response.data);
   let forecast = response.data.daily;
   let forecastData = document.querySelector("#upcoming-forecast-data");
-  let forecastHTML = `<div class="column">`;
+  let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 4) {
+    if (index < 6) {
       forecastHTML =
         forecastHTML +
-        `
-          <ul class="upcoming-forecast">
-            <li>${formatForecastDay(
-              forecastDay.dt
-            )} <img src="http://openweathermap.org/img/wn/${
-          forecastDay.weather[0].icon
-        }@2x.png" alt="" width="42"> </li>
-            <li>H: ${Math.round(forecastDay.temp.max)}° L: ${Math.round(
-          forecastDay.temp.min
-        )}°</li>
-          </ul>
-    `;
+        `<div class="col upcoming-forecast">
+            <div class="upcoming-forecast-weekday">
+            ${formatForecastDay(forecastDay.dt)}</div>
+            <img src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" alt="" width="42" />
+            <div class="weather-forecast-temperatures">  
+              <span>${Math.round(forecastDay.temp.max)}°</span> 
+              <span>${Math.round(forecastDay.temp.min)}°</span> 
+            </div>
+        </div>`;
     }
   });
-
   forecastHTML = forecastHTML + `</div>`;
   forecastData.innerHTML = forecastHTML;
 }
