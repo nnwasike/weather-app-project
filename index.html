@@ -33,23 +33,6 @@
             <li id="date"></li>
             <li id="time"></li>
           </ul>
-          <span id="temp"></span>
-          <span>
-            <a href="#" id="celsius" class="active">°C</a>
-            <span class="separation-bar">|</span>
-            <a href="#" id="fahrenheit">°F</a>
-          </span>
-          <span>
-            <img src="" alt="" id="central-icon" />
-          </span>
-          <div id="forecast"></div>
-          <div>
-            H: <span id="temp-high"></span>° L: <span id="temp-low"></span>°
-          </div>
-          <ul class="weather-conditions">
-            <li>Humidity: <span id="humidity"></span>%</li>
-            <li>Wind: <span id="wind"></span> km/h</li>
-          </ul>
         </div>
         <div class="col-6 search-bar">
           <form id="search-input-bar">
@@ -62,6 +45,27 @@
             />
             <input type="submit" value="Search" id="search-button" />
           </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <span id="temp"></span>
+          <span>
+            <a href="#" id="fahrenheit" class="active">°F</a>
+            <span class="separation-bar">|</span>
+            <a href="#" id="celsius">°C</a>
+          </span>
+          <div id="current-forecast-description"></div>
+          <div>
+            H: <span id="temp-high"></span>° L: <span id="temp-low"></span>°
+          </div>
+          <ul class="weather-conditions">
+            <li>Humidity: <span id="humidity"></span>%</li>
+            <li>Wind: <span id="wind"></span> km/h</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <img src="" alt="" width="150" id="central-icon" />
         </div>
       </div>
       <div id="upcoming-forecast-message">
