@@ -45,12 +45,11 @@ function executeDate() {
 }
 executeDate();
 
-let fahrenheitLink = document.querySelector("#fahrenheit");
-let celsiusLink = document.querySelector("#celsius");
-
 function changeAppColorBackground() {
   let appBackgroundColor = document.querySelector(".app-background");
   let searchButtonText = document.querySelector("#search-button");
+  let fahrenheitLink = document.querySelector("#fahrenheit");
+  let celsiusLink = document.querySelector("#celsius");
   let time = new Date().getHours();
   if (time >= 0 && time <= 2) {
     appBackgroundColor.style.backgroundImage =
@@ -69,21 +68,45 @@ function changeAppColorBackground() {
   } else if (time === 5 || time === 6) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #9598f0 0%, #225a85 100%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   } else if (time === 7) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #9598f0 0%, #a1c4fd 100%)";
+    appBackgroundColor.classList.remove("evening-text-color");
+    fahrenheitLink.classList.remove("evening-text-color");
+    celsiusLink.classList.remove("evening-text-color");
+    searchButtonText.classList.remove("evening-text-color");
   } else if (time >= 8 && time <= 11) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)";
+    appBackgroundColor.classList.remove("evening-text-color");
+    fahrenheitLink.classList.remove("evening-text-color");
+    celsiusLink.classList.remove("evening-text-color");
+    searchButtonText.classList.remove("evening-text-color");
   } else if (time >= 12 && time <= 14) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #7aadff 0%, #c2e9fb 100%)";
+    appBackgroundColor.classList.remove("evening-text-color");
+    fahrenheitLink.classList.remove("evening-text-color");
+    celsiusLink.classList.remove("evening-text-color");
+    searchButtonText.classList.remove("evening-text-color");
   } else if (time === 15 || time === 16) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #a1c4fd 0%, #7aadff 100%)";
+    appBackgroundColor.classList.remove("evening-text-color");
+    fahrenheitLink.classList.remove("evening-text-color");
+    celsiusLink.classList.remove("evening-text-color");
+    searchButtonText.classList.remove("evening-text-color");
   } else if (time === 17 || time === 18) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #a1c4fd 0%, #5d4ba1 100%)";
+    appBackgroundColor.classList.remove("evening-text-color");
+    fahrenheitLink.classList.remove("evening-text-color");
+    celsiusLink.classList.remove("evening-text-color");
+    searchButtonText.classList.remove("evening-text-color");
   } else if (time === 19) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #5d4ba1 0%, #032845 100%)";
@@ -124,7 +147,7 @@ function changeToCelsius(event) {
   let lowElement = document.querySelector("#temp-low");
   lowElement.innerHTML = Math.round(((fahrenheitLowTemp - 32) * 5) / 9);
 }
-
+let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
 function changeToFahrenheit(event) {
@@ -140,14 +163,12 @@ function changeToFahrenheit(event) {
   let lowElement = document.querySelector("#temp-low");
   lowElement.innerHTML = Math.round(fahrenheitLowTemp);
 }
-
+let fahrenheitLink = document.querySelector("#fahrenheit");
 fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
 let fahrenheitTemperature = null;
 let fahrenheitHighTemp = null;
 let fahrenheitLowTemp = null;
-//let upcomingFahrenheitHighTemp = null;
-//let upcomingFahreheitLowTemp = null;
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -158,7 +179,7 @@ function formatForecastDay(timestamp) {
 
 function displayForecast(response) {
   console.log(response.data);
-  //upcomingFahrenheitHighTemp = response.data.daily;
+
   let forecast = response.data.daily;
   let forecastData = document.querySelector("#upcoming-forecast-data");
   let forecastHTML = `<div class="row">`;
@@ -188,7 +209,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  //console.log(coordinates);
   let units = `imperial`;
   let apiEndpoint = `https://api.openweathermap.org/data/2.5/onecall`;
   let apiKey = `db0acb1fc2ef7da0ca0dee51db450339`;
@@ -203,7 +223,6 @@ function showTemperature(response) {
   fahrenheitTemperature = response.data.main.temp;
   document.querySelector("#temp").innerHTML = Math.round(fahrenheitTemperature);
 
-  //console.log(response.data.weather);
   let tempDescription = response.data.weather[0].description;
   document.querySelector("#current-forecast-description").innerHTML =
     tempDescription;
@@ -215,11 +234,9 @@ function showTemperature(response) {
   fahrenheitLowTemp = response.data.main.temp_min;
   document.querySelector("#temp-low").innerHTML = Math.round(fahrenheitLowTemp);
 
-  //console.log(response.data.main);
   let humidityData = response.data.main.humidity;
   document.querySelector("#humidity").innerHTML = humidityData;
 
-  //console.log(response.data.wind);
   let windData = response.data.wind.speed;
   document.querySelector("#wind").innerHTML = Math.round(windData);
 
@@ -232,12 +249,12 @@ function showTemperature(response) {
 
   getForecast(response.data.coord);
 }
+
 function searchCity(city) {
   let units = "imperial";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "db0acb1fc2ef7da0ca0dee51db450339";
   let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiUrl).then(showTemperature);
 }
 searchCity("Berlin");
@@ -254,8 +271,6 @@ let searchButton = document.querySelector("#search-input-bar");
 searchButton.addEventListener("submit", executeSubmit);
 
 function showGeoLocationTemp(response) {
-  //console.log(response.data);
-  //console.log(response.data.name);
   let currentGeoCityName = response.data.name;
   document.querySelector("h1").innerHTML = currentGeoCityName;
 
@@ -274,16 +289,15 @@ function showGeoLocationTemp(response) {
 }
 
 function showLocation(position) {
-  //console.log(position);
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
   let units = "imperial";
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "db0acb1fc2ef7da0ca0dee51db450339";
-  let apiUrlTwo = `${apiEndpoint}?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
-
-  axios.get(apiUrlTwo).then(showGeoLocationTemp);
+  let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showGeoLocationTemp);
 }
+
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showLocation);
 }

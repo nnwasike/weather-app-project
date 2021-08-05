@@ -53,7 +53,7 @@ footer {
   margin-top: 30px;
   max-width: 600px;
   padding: 25px;
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar {
@@ -131,7 +131,7 @@ footer {
 }
 .evening-text-color {
   color: rgb(241, 241, 241);
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 .evening-text-color :hover {
