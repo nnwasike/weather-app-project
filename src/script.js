@@ -2,7 +2,7 @@ function executeDate() {
   let now = new Date();
   let date = now.getDate();
   let hours = now.getHours();
-  let ampm = hours >= 12 ? "PM" : "AM  ";
+  let ampm = hours >= 12 ? "pm" : "am";
   hours = hours % 12;
   hours = hours ? hours : 12;
   let minutes = now.getMinutes();
@@ -41,9 +41,49 @@ function executeDate() {
   currentDate.innerHTML = `${day}, ${month} ${date}`;
 
   let currentTime = document.querySelector("#time");
-  currentTime.innerHTML = `${hours}:${minutes} ${ampm}`;
+  currentTime.innerHTML = `Last updated: ${hours}:${minutes} ${ampm}`;
 }
 executeDate();
+
+function changeAppColorBackground() {
+  let appBackgroundColor = document.querySelector(".app-background");
+  let time = new Date().getHours();
+  if (time >= 0 && time <= 2) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to top, #1b2c47 0%, #000000 100%)";
+  } else if (time === 3 || time === 4) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to top, #225a85 0%, #1b2c47 100%)";
+  } else if (time === 5 || time === 6) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to top, #9598f0 0%, #225a85 100%)";
+  } else if (time === 7) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to bottom, #9598f0 0%, #a1c4fd 100%)";
+  } else if (time >= 8 && time <= 11) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)";
+  } else if (time >= 12 && time <= 14) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to top, #7aadff 0%, #c2e9fb 100%)";
+  } else if (time === 15 || time === 16) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to top, #a1c4fd 0%, #7aadff 100%)";
+  } else if (time === 17 || time === 18) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to bottom, #a1c4fd 0%, #5d4ba1 100%)";
+  } else if (time === 19) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to bottom, #5d4ba1 0%, #032845 100%)";
+  } else if (time === 20 || time === 21) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to bottom, #394475 0%, #000000 100%)";
+  } else if (time === 22 || time === 23) {
+    appBackgroundColor.style.backgroundImage =
+      "linear-gradient(to bottom, #000000 0%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)";
+  }
+}
+changeAppColorBackground();
 
 function changeToCelsius(event) {
   event.preventDefault();
@@ -198,7 +238,6 @@ function showGeoLocationTemp(response) {
   let geoTempData = Math.round(response.data.main.temp);
   document.querySelector("#temp").innerHTML = geoTempData;
 
-  //console.log(response.data.weather);
   let geoTempDescription = response.data.weather[0].description;
   document.querySelector("#current-forecast-description").innerHTML =
     geoTempDescription;
