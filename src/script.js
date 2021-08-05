@@ -45,15 +45,27 @@ function executeDate() {
 }
 executeDate();
 
+let fahrenheitLink = document.querySelector("#fahrenheit");
+let celsiusLink = document.querySelector("#celsius");
+
 function changeAppColorBackground() {
   let appBackgroundColor = document.querySelector(".app-background");
+  let searchButtonText = document.querySelector("#search-button");
   let time = new Date().getHours();
   if (time >= 0 && time <= 2) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #1b2c47 0%, #000000 100%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   } else if (time === 3 || time === 4) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #225a85 0%, #1b2c47 100%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   } else if (time === 5 || time === 6) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to top, #9598f0 0%, #225a85 100%)";
@@ -75,12 +87,24 @@ function changeAppColorBackground() {
   } else if (time === 19) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #5d4ba1 0%, #032845 100%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   } else if (time === 20 || time === 21) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #394475 0%, #000000 100%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   } else if (time === 22 || time === 23) {
     appBackgroundColor.style.backgroundImage =
       "linear-gradient(to bottom, #000000 0%, #1C1C1C 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%)";
+    appBackgroundColor.classList.add("evening-text-color");
+    fahrenheitLink.classList.add("evening-text-color");
+    celsiusLink.classList.add("evening-text-color");
+    searchButtonText.classList.add("evening-text-color");
   }
 }
 changeAppColorBackground();
@@ -100,7 +124,7 @@ function changeToCelsius(event) {
   let lowElement = document.querySelector("#temp-low");
   lowElement.innerHTML = Math.round(((fahrenheitLowTemp - 32) * 5) / 9);
 }
-let celsiusLink = document.querySelector("#celsius");
+
 celsiusLink.addEventListener("click", changeToCelsius);
 
 function changeToFahrenheit(event) {
@@ -116,14 +140,14 @@ function changeToFahrenheit(event) {
   let lowElement = document.querySelector("#temp-low");
   lowElement.innerHTML = Math.round(fahrenheitLowTemp);
 }
-let fahrenheitLink = document.querySelector("#fahrenheit");
+
 fahrenheitLink.addEventListener("click", changeToFahrenheit);
 
 let fahrenheitTemperature = null;
 let fahrenheitHighTemp = null;
 let fahrenheitLowTemp = null;
-//let upcomingCelsiusHighTemp = null;
-//let upcomingCelsiusLowTemp = null;
+//let upcomingFahrenheitHighTemp = null;
+//let upcomingFahreheitLowTemp = null;
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -134,7 +158,7 @@ function formatForecastDay(timestamp) {
 
 function displayForecast(response) {
   console.log(response.data);
-  //upcomingCelsiusHighTemp = response.data.daily;
+  //upcomingFahrenheitHighTemp = response.data.daily;
   let forecast = response.data.daily;
   let forecastData = document.querySelector("#upcoming-forecast-data");
   let forecastHTML = `<div class="row">`;

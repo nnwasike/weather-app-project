@@ -10,11 +10,6 @@ h1,
   font-family: "Montserrat", sans-serif;
 }
 
-h1 {
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  color: #000000;
-}
-
 ul {
   list-style: none;
 }
@@ -50,6 +45,7 @@ footer {
   font-size: 55px;
   padding: 0;
 }
+
 .app-background {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
   border: solid thin gray;
@@ -57,6 +53,7 @@ footer {
   margin-top: 30px;
   max-width: 600px;
   padding: 25px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar {
@@ -78,13 +75,7 @@ footer {
 .weather-conditions {
   padding-left: 0;
 }
-.week {
-  text-align: center;
-  font-weight: bold;
-}
-.icons {
-  font-size: 25px;
-}
+
 #search-button {
   background: transparent;
   border: transparent;
@@ -107,7 +98,7 @@ footer {
 
 #central-icon {
   display: block;
-  margin: 0 auto;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
 #upcoming-forecast-message {
@@ -126,11 +117,23 @@ footer {
 
 .upcoming-forecast-weekday {
   font-weight: bold;
-  opacity: 0.9;
 }
 
 .active {
   color: black;
   font-weight: bold;
-  opacity: 0.8;
+  opacity: 0.9;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.active:hover {
+  color: black;
+}
+.evening-text-color {
+  color: rgb(241, 241, 241);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.evening-text-color :hover {
+  color: rgb(241, 241, 241);
 }
