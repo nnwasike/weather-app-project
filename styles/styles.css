@@ -6,7 +6,7 @@ h1,
 #temp-high,
 #temp-low,
 .weather-conditions,
-.week {
+.upcoming-forecast-message {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -101,20 +101,23 @@ footer {
   filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
 }
 
-#upcoming-forecast-message {
+.upcoming-forecast-message {
   text-align: left;
   margin-bottom: 10px;
   font-size: smaller;
 }
 
+.upcoming-hourly-forecast,
 .upcoming-forecast {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 17px;
 }
+#upcoming-hourly-data,
 #upcoming-forecast-data {
   margin-right: -35px;
 }
 
+.upcoming-hourly-time,
 .upcoming-forecast-weekday {
   font-weight: bold;
 }
@@ -129,6 +132,7 @@ footer {
 .active:hover {
   color: black;
 }
+
 .evening-text-color {
   color: rgb(241, 241, 241);
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);

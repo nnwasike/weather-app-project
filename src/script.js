@@ -170,6 +170,18 @@ let fahrenheitTemperature = null;
 let fahrenheitHighTemp = null;
 let fahrenheitLowTemp = null;
 
+function formatForecastHour(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  return `${hours} ${ampm}`;
+}
+
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -178,7 +190,26 @@ function formatForecastDay(timestamp) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
+  let hourlyForecast = response.data.hourly;
+  let hourlyForecastData = document.querySelector("#upcoming-hourly-data");
+  let hourlyForecastHTML = `<div class="row">`;
+  hourlyForecast.forEach(function (forecastHour, index) {
+    if (index < 6) {
+      hourlyForecastHTML =
+        hourlyForecastHTML +
+        `<div class="col upcoming-hourly-forecast">
+            <div class="upcoming-hourly-time">
+            ${formatForecastHour(forecastHour.dt)}</div>
+            <img src="http://openweathermap.org/img/wn/${
+              forecastHour.weather[0].icon
+            }@2x.png" alt="" width="42" />
+            <div class="hourly-forecast-temperatures">  
+              ${Math.round(forecastHour.temp)}°</div> 
+        </div>`;
+    }
+  });
+  hourlyForecastHTML = hourlyForecastHTML + `</div>`;
+  hourlyForecastData.innerHTML = hourlyForecastHTML;
 
   let forecast = response.data.daily;
   let forecastData = document.querySelector("#upcoming-forecast-data");
