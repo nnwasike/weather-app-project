@@ -190,6 +190,7 @@ function formatForecastDay(timestamp) {
 }
 
 function displayForecast(response) {
+  console.log(response.data);
   let hourlyForecast = response.data.hourly;
   let hourlyForecastData = document.querySelector("#upcoming-hourly-data");
   let hourlyForecastHTML = `<div class="row">`;
@@ -227,7 +228,7 @@ function displayForecast(response) {
             <div class="weather-forecast-temperatures">  
               <span class="upcoming-high-temp">${Math.round(
                 forecastDay.temp.max
-              )}°</span> 
+              )}°</span>
               <span class="upcoming-low-temp">${Math.round(
                 forecastDay.temp.min
               )}°</span> 
@@ -248,7 +249,7 @@ function getForecast(coordinates) {
 }
 
 function showTemperature(response) {
-  //console.log(response.data);
+  console.log(response.data);
   document.querySelector("h1").innerHTML = response.data.name;
 
   fahrenheitTemperature = response.data.main.temp;
@@ -279,6 +280,10 @@ function showTemperature(response) {
   centralIcon.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
+
+  console.log(
+    new Date(response.data.dt * 1000 + response.data.timezone * 1000)
+  );
 }
 
 function searchCity(city) {
@@ -301,24 +306,6 @@ function executeSubmit(event) {
 let searchButton = document.querySelector("#search-input-bar");
 searchButton.addEventListener("submit", executeSubmit);
 
-function showGeoLocationTemp(response) {
-  let currentGeoCityName = response.data.name;
-  document.querySelector("h1").innerHTML = currentGeoCityName;
-
-  let geoTempData = Math.round(response.data.main.temp);
-  document.querySelector("#temp").innerHTML = geoTempData;
-
-  let geoTempDescription = response.data.weather[0].description;
-  document.querySelector("#current-forecast-description").innerHTML =
-    geoTempDescription;
-
-  let geoHighTempData = response.data.main.temp_max;
-  document.querySelector("#temp-high").innerHTML = Math.round(geoHighTempData);
-
-  let geoLowTempData = response.data.main.temp_min;
-  document.querySelector("#temp-low").innerHTML = Math.round(geoLowTempData);
-}
-
 function showLocation(position) {
   let lat = position.coords.latitude;
   let long = position.coords.longitude;
@@ -326,7 +313,7 @@ function showLocation(position) {
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
   let apiKey = "db0acb1fc2ef7da0ca0dee51db450339";
   let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(showGeoLocationTemp);
+  axios.get(apiUrl).then(showTemperature);
 }
 
 function getCurrentPosition() {

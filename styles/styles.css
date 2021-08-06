@@ -6,6 +6,9 @@ h1,
 #temp-high,
 #temp-low,
 .weather-conditions,
+#celsius,
+.separation-bar,
+#fahrenheit,
 .upcoming-forecast-message {
   font-family: "Montserrat", sans-serif;
 }
@@ -31,25 +34,21 @@ button:hover {
   color: white;
 }
 
-footer {
+footer,
+.upcoming-forecast-message {
   text-align: left;
+}
+
+footer {
   font-size: smaller;
   margin: 5px auto;
   max-width: 600px;
 }
 
-#code-link {
-  text-decoration-line: none;
-}
-#temp {
-  font-size: 55px;
-  padding: 0;
-}
-
 .app-background {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
   border: solid thin gray;
   border-radius: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
   margin-top: 30px;
   max-width: 600px;
   padding: 25px;
@@ -57,74 +56,40 @@ footer {
 }
 
 .search-bar {
-  text-align: right;
   padding: 8px 12px 0 0;
+  text-align: right;
 }
 
-.heading-info {
-  padding-left: 0;
-  font-weight: 500;
-  font-size: 1.25rem;
-}
-
-#current-forecast-description {
-  font-weight: bold;
-  font-size: larger;
-  text-transform: capitalize;
-}
+.heading-info,
 .weather-conditions {
   padding-left: 0;
 }
 
-#search-button {
-  background: transparent;
-  border: transparent;
-}
-
-#celsius {
-  margin: -20px 0;
-}
-
-#celsius,
-.separation-bar,
-#fahrenheit {
-  cursor: default;
-  font-size: 15px;
-  position: relative;
-  top: -26px;
-  font-family: "Montserrat", sans-serif;
-  text-decoration: none;
-}
-
-#central-icon {
-  display: block;
-  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+.heading-info {
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .upcoming-forecast-message {
-  text-align: left;
   margin-bottom: 10px;
   font-size: smaller;
 }
 
-.upcoming-hourly-forecast,
-.upcoming-forecast {
-  text-align: center;
-  margin-bottom: 17px;
-}
-#upcoming-hourly-data,
-#upcoming-forecast-data {
-  margin-right: -35px;
+.upcoming-hourly-time,
+.upcoming-forecast-weekday,
+.active,
+#current-forecast-description {
+  font-weight: bold;
 }
 
-.upcoming-hourly-time,
-.upcoming-forecast-weekday {
-  font-weight: bold;
+.upcoming-hourly-forecast,
+.upcoming-forecast {
+  margin-bottom: 17px;
+  text-align: center;
 }
 
 .active {
   color: black;
-  font-weight: bold;
   opacity: 0.9;
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -140,4 +105,45 @@ footer {
 
 .evening-text-color :hover {
   color: rgb(241, 241, 241);
+}
+
+#temp {
+  font-size: 55px;
+  padding: 0;
+}
+#current-forecast-description {
+  font-size: larger;
+  text-transform: capitalize;
+}
+#search-button {
+  background: transparent;
+  border: transparent;
+}
+
+#celsius {
+  margin: -20px 0;
+}
+
+#celsius,
+.separation-bar,
+#fahrenheit {
+  cursor: default;
+  font-size: 15px;
+  position: relative;
+  text-decoration: none;
+  top: -26px;
+}
+
+#central-icon {
+  display: block;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.4));
+}
+
+#upcoming-hourly-data,
+#upcoming-forecast-data {
+  margin-right: -35px;
+}
+
+#code-link {
+  text-decoration-line: none;
 }
