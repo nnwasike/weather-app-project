@@ -24,9 +24,8 @@ button {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-size: 10px;
-  margin: 10px 0 -75px auto;
+  margin: 12px 0 -75px auto;
   padding: 10px;
-
   transition: all 500ms ease-in-out;
 }
 
@@ -76,6 +75,7 @@ footer {
 .upcoming-forecast-message {
   margin-bottom: 10px;
   font-size: smaller;
+  border-top: solid thin;
 }
 
 .upcoming-hourly-time,
