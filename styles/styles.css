@@ -20,12 +20,13 @@ ul {
 button {
   background: white;
   border: thin black;
-  border-radius: 15px;
+  border-radius: 12px;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-size: 10px;
-  margin: 0 auto;
+  margin: 10px 0 -75px auto;
   padding: 10px;
+
   transition: all 500ms ease-in-out;
 }
 
@@ -39,10 +40,13 @@ footer,
   text-align: left;
 }
 
+footer,
+.app-background {
+  max-width: 594px;
+}
 footer {
   font-size: smaller;
   margin: 5px auto;
-  max-width: 600px;
 }
 
 .app-background {
@@ -50,7 +54,6 @@ footer {
   border-radius: 8px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
   margin-top: 30px;
-  max-width: 600px;
   padding: 25px;
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -103,7 +106,7 @@ footer {
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.evening-text-color :hover {
+.evening-text-color:hover {
   color: rgb(241, 241, 241);
 }
 
