@@ -217,12 +217,12 @@ function displayForecast(response) {
         hourlyForecastHTML +
         `<div class="col upcoming-hourly-forecast">
             <div class="upcoming-hourly-time">
-            ${formatForecastHour(forecastHour.dt)}</div>
-            <img src="http://openweathermap.org/img/wn/${
-              forecastHour.weather[0].icon
-            }@2x.png" alt="" width="42" />
-            <div class="hourly-forecast-temperatures">  
-              ${Math.round(forecastHour.temp)}°</div> 
+              ${formatForecastHour(forecastHour.dt)}</div>
+              <img src="http://openweathermap.org/img/wn/${
+                forecastHour.weather[0].icon
+              }@2x.png" alt="" width="42" />
+              <div class="hourly-forecast-temperatures">  
+                ${Math.round(forecastHour.temp)}°</div> 
         </div>`;
     }
   });
@@ -263,59 +263,58 @@ function getForecast(coordinates) {
 }
 
 function displayLocalTimeAndDay(response) {
-  console.log(response.data);
   let info = response.data.datetime;
   let indexSpace = info.indexOf(" ");
   let timeZone = response.data.timezone_abbreviation;
-  console.log(timeZone);
+  let now = new Date();
+
+  let monthString = info.slice(5, 7);
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[now.getMonth(monthString)];
 
   let dateString = info.slice(8, indexSpace);
   if (dateString < 10) {
     dateString = info.slice(9, indexSpace);
   }
-  console.log(dateString);
 
-  let now = new Date();
-
-  let monthString = info.slice(5, 7);
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let month = months[now.getMonth(monthString)];
-  console.log(month);
-
-  let year = info.slice(0, 4);
-  console.log(year);
-
-  document.getElementById("targetDate").innerHTML = `${month} ${dateString}`;
+  if (timeZone === "CEST") {
+    document.querySelector("#targetDate").innerHTML = "";
+  } else {
+    document.querySelector(
+      "#targetDate"
+    ).innerHTML = `Local Date: ${month} ${dateString}`;
+  }
 
   let minutesString = info.slice(14, info.length - 3);
-  console.log(minutesString);
 
   let hourString = info.slice(11, info.length - 6);
   let ampm = hourString >= 12 ? "pm" : "am";
   hourString = hourString % 12;
   hourString = hourString ? hourString : 12;
-  console.log(hourString);
 
-  document.getElementById(
-    "targetTime"
-  ).innerHTML = `Local Time: ${hourString}:${minutesString} ${ampm} ${timeZone}`;
+  if (timeZone === "CEST") {
+    document.querySelector("#targetTime").innerHTML = "";
+  } else {
+    document.querySelector(
+      "#targetTime"
+    ).innerHTML = `Local Time: ${hourString}:${minutesString} ${ampm} ${timeZone}`;
+  }
 }
 
 function showTemperature(response) {
-  console.log(response.data);
   document.querySelector("h1").innerHTML = response.data.name;
 
   fahrenheitTemperature = response.data.main.temp;
