@@ -262,17 +262,57 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-//function displayLocalTimeAndDay(response) {
-//console.log(response.data);
-//let info = response.data.datetime;
-//let indexSpace = info.indexOf(" ");
+function displayLocalTimeAndDay(response) {
+  console.log(response.data);
+  let info = response.data.datetime;
+  let indexSpace = info.indexOf(" ");
+  let timeZone = response.data.timezone_abbreviation;
+  console.log(timeZone);
 
-//let date = info.slice(0, indexSpace);
-//document.getElementById("date").innerHTML = date;
+  let dateString = info.slice(8, indexSpace);
+  if (dateString < 10) {
+    dateString = info.slice(9, indexSpace);
+  }
+  console.log(dateString);
 
-//let time = info.slice(indexSpace, info.length - 3);
-//document.getElementById("time").innerHTML = time;
-//}
+  let now = new Date();
+
+  let monthString = info.slice(5, 7);
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[now.getMonth(monthString)];
+  console.log(month);
+
+  let year = info.slice(0, 4);
+  console.log(year);
+
+  document.getElementById("targetDate").innerHTML = `${month} ${dateString}`;
+
+  let minutesString = info.slice(14, info.length - 3);
+  console.log(minutesString);
+
+  let hourString = info.slice(11, info.length - 6);
+  let ampm = hourString >= 12 ? "pm" : "am";
+  hourString = hourString % 12;
+  hourString = hourString ? hourString : 12;
+  console.log(hourString);
+
+  document.getElementById(
+    "targetTime"
+  ).innerHTML = `Local Time: ${hourString}:${minutesString} ${ampm} ${timeZone}`;
+}
 
 function showTemperature(response) {
   console.log(response.data);
@@ -305,18 +345,14 @@ function showTemperature(response) {
   );
   centralIcon.setAttribute("alt", response.data.weather[0].description);
 
-  console.log(
-    new Date(response.data.dt * 1000 + response.data.timezone * 1000)
-  );
-
-  //let apiTimeKey = `5fd26f77b6934e30921a24a819be7b47`;
-  //let tLat = `${response.data.coord.lat}`;
-  //let tLon = `${response.data.coord.lon}`;
-  //axios
-  //.get(
-  //`https://timezone.abstractapi.com/v1/current_time/?api_key=${apiTimeKey}&location=${tLat},${tLon}`
-  //)
-  //.then(displayLocalTimeAndDay);
+  let apiTimeKey = `5fd26f77b6934e30921a24a819be7b47`;
+  let tLat = `${response.data.coord.lat}`;
+  let tLon = `${response.data.coord.lon}`;
+  axios
+    .get(
+      `https://timezone.abstractapi.com/v1/current_time/?api_key=${apiTimeKey}&location=${tLat},${tLon}`
+    )
+    .then(displayLocalTimeAndDay);
 
   getForecast(response.data.coord);
 }
