@@ -315,6 +315,9 @@ function displayLocalTimeAndDay(response) {
 }
 
 function showTemperature(response) {
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+
   document.querySelector("h1").innerHTML = response.data.name;
 
   fahrenheitTemperature = response.data.main.temp;
